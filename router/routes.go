@@ -1,7 +1,7 @@
 package router
 
 import (
-	"net/http"
+	"ms-gin-gonic-rest-api-go/handler"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,34 +9,11 @@ import (
 func initializeRoutes(r *gin.Engine) {
 	v1 := r.Group("/api/v1")
 	{
-		v1.GET("/openning", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET openning",
-			})
-		})
-
-		v1.POST("/openning", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "POST openning",
-			})
-		})
-
-		v1.DELETE("/openning", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "DELETE openning",
-			})
-		})
-
-		v1.PUT("/openning", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "PUT openning",
-			})
-		})
-
-		v1.GET("/opennings", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET opennings",
-			})
-		})
+		// openning domain
+		v1.GET("/openning", handler.GetOneOpenningHandler)
+		v1.POST("/openning", handler.CreateOpenningHandler)
+		v1.DELETE("/openning", handler.DeleteOpenningHandler)
+		v1.PUT("/openning", handler.UpdateOpenningHandler)
+		v1.GET("/opennings", handler.GetAllOpenningsHandler)
 	}
 }
