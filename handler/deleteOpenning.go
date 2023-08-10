@@ -14,7 +14,7 @@ func DeleteOpenningHandler(ctx *gin.Context) {
 		return
 	}
 
-	openning := schemas.Openning{}
+	var openning schemas.Openning
 
 	if err := db.First(&openning, id).Error; err != nil {
 		message := fmt.Sprintf("openning not found for id: %s", id)
