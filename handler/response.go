@@ -27,10 +27,21 @@ func OnBadRequest(ctx *gin.Context, message string) {
 }
 
 func OnCreated(ctx *gin.Context, message string, data interface{}) {
+	logger.Debugf("created new openning: %v", data)
 	handleResponseWithData(ctx, http.StatusCreated, message, data)
 }
 
 func OnError(ctx *gin.Context, message string) {
 	logger.Errorf("error when creating new openning: %v", message)
 	handleResponse(ctx, http.StatusInternalServerError, message)
+}
+
+func OnNotFound(ctx *gin.Context, message string) {
+	logger.Debug(message)
+	handleResponse(ctx, http.StatusNotFound, message)
+}
+
+func OnSuccess(ctx *gin.Context, message string, data interface{}) {
+	logger.Debug(message)
+	handleResponseWithData(ctx, http.StatusOK, message, data)
 }
