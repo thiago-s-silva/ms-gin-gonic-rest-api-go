@@ -7,7 +7,7 @@ import (
 )
 
 func CreateOpenningHandler(ctx *gin.Context) {
-	payload := CreateOpenningRequest{}
+	var payload CreateOpenningRequest
 
 	ctx.BindJSON(&payload)
 
