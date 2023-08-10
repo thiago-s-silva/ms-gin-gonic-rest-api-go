@@ -7,6 +7,9 @@ import (
 )
 
 func initializeRoutes(r *gin.Engine) {
+	// init Handler
+	handler.InitializeHandler()
+
 	v1 := r.Group("/api/v1")
 	{
 		// openning domain
