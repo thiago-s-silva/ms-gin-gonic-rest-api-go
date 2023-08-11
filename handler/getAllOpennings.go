@@ -6,6 +6,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+// @Summary Get All Opennings
+// @Description Get all opennings
+// @Tags Opennings
+// @Produce json
+// @Success 200 {object} GetAllOpenningsResponseType
+// @Failure 400 {object} ErrorResponseType
+// @Failure 500 {object} ErrorResponseType
+// @Router /opennings [get]
 func GetAllOpenningsHandler(ctx *gin.Context) {
 	var opennings []schemas.Openning
 

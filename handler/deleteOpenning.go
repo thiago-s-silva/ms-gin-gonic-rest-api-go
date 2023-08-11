@@ -7,6 +7,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+// @Summary Delete Openning
+// @Description Delete an openning
+// @Tags Opennings
+// @Produce json
+// @Param id query string false "openning id"
+// @Success 200 {object} DeleteOpenningResponseType
+// @Failure 400 {object} ErrorResponseType
+// @Failure 404 {object} ErrorResponseType
+// @Failure 500 {object} ErrorResponseType
+// @Router /openning [delete]
 func DeleteOpenningHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {

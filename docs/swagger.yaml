@@ -1,4 +1,231 @@
+definitions:
+  handler.CreateOpenningRequest:
+    properties:
+      company:
+        type: string
+      link:
+        type: string
+      location:
+        type: string
+      remote:
+        type: boolean
+      role:
+        type: string
+      salary:
+        type: integer
+    type: object
+  handler.CreateOpenningResponseType:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpenningResponse'
+      message:
+        type: string
+    type: object
+  handler.DeleteOpenningResponseType:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpenningResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponseType:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.GetAllOpenningsResponseType:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.OpenningResponse'
+        type: array
+      message:
+        type: string
+    type: object
+  handler.GetOneOpenningResponseType:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpenningResponse'
+      message:
+        type: string
+    type: object
+  handler.UpdateOpenningResponseType:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpenningResponse'
+      message:
+        type: string
+    type: object
+  schemas.OpenningResponse:
+    properties:
+      company:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      link:
+        type: string
+      location:
+        type: string
+      remote:
+        type: boolean
+      role:
+        type: string
+      salary:
+        type: integer
+      updated_at:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /openning:
+    delete:
+      description: Delete an openning
+      parameters:
+      - description: openning id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteOpenningResponseType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+      summary: Delete Openning
+      tags:
+      - Opennings
+    get:
+      description: Get one openning by id
+      parameters:
+      - description: openning id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.GetOneOpenningResponseType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+      summary: Get Openning
+      tags:
+      - Opennings
+    post:
+      consumes:
+      - application/json
+      description: Create a new job openning
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateOpenningRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.CreateOpenningResponseType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+      summary: Create Openning
+      tags:
+      - Opennings
+    put:
+      consumes:
+      - application/json
+      description: Update an openning
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateOpenningRequest'
+      - description: openning id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateOpenningResponseType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+      summary: Update Openning
+      tags:
+      - Opennings
+  /opennings:
+    get:
+      description: Get all opennings
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.GetAllOpenningsResponseType'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponseType'
+      summary: Get All Opennings
+      tags:
+      - Opennings
 swagger: "2.0"

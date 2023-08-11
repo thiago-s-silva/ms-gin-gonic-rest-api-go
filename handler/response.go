@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"ms-gin-gonic-rest-api-go/schemas"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -44,4 +45,33 @@ func OnNotFound(ctx *gin.Context, message string) {
 func OnSuccess(ctx *gin.Context, message string, data interface{}) {
 	logger.Debug(message)
 	handleResponseWithData(ctx, http.StatusOK, message, data)
+}
+
+type ErrorResponseType struct {
+	Message string `json:"message"`
+}
+
+type CreateOpenningResponseType struct {
+	Message string                   `json:"message"`
+	Data    schemas.OpenningResponse `json:"data"`
+}
+
+type UpdateOpenningResponseType struct {
+	Message string                   `json:"message"`
+	Data    schemas.OpenningResponse `json:"data"`
+}
+
+type DeleteOpenningResponseType struct {
+	Message string                   `json:"message"`
+	Data    schemas.OpenningResponse `json:"data"`
+}
+
+type GetOneOpenningResponseType struct {
+	Message string                   `json:"message"`
+	Data    schemas.OpenningResponse `json:"data"`
+}
+
+type GetAllOpenningsResponseType struct {
+	Message string                     `json:"message"`
+	Data    []schemas.OpenningResponse `json:"data"`
 }
