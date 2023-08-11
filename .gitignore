@@ -1,0 +1,14 @@
+# Binaries
+*.bash
+*.dll
+*.so
+*.dylib
+
+# Test Binary
+*.test
+
+# coverage
+*.out
+
+# DB Folder
+db/
